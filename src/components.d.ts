@@ -6,19 +6,90 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface HubModerationAssistant {
+        /**
+          * Discussion channel
+         */
+        "channelId": string;
+        "entityId": string;
+    }
+    interface HubModerationFilters {
+    }
+    interface HubPostCard {
+        "post": any;
+    }
+    interface HubPostsResults {
+        "posts": any[];
+    }
+}
+export interface HubModerationFiltersCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLHubModerationFiltersElement;
 }
 declare global {
+    interface HTMLHubModerationAssistantElement extends Components.HubModerationAssistant, HTMLStencilElement {
+    }
+    var HTMLHubModerationAssistantElement: {
+        prototype: HTMLHubModerationAssistantElement;
+        new (): HTMLHubModerationAssistantElement;
+    };
+    interface HTMLHubModerationFiltersElement extends Components.HubModerationFilters, HTMLStencilElement {
+    }
+    var HTMLHubModerationFiltersElement: {
+        prototype: HTMLHubModerationFiltersElement;
+        new (): HTMLHubModerationFiltersElement;
+    };
+    interface HTMLHubPostCardElement extends Components.HubPostCard, HTMLStencilElement {
+    }
+    var HTMLHubPostCardElement: {
+        prototype: HTMLHubPostCardElement;
+        new (): HTMLHubPostCardElement;
+    };
+    interface HTMLHubPostsResultsElement extends Components.HubPostsResults, HTMLStencilElement {
+    }
+    var HTMLHubPostsResultsElement: {
+        prototype: HTMLHubPostsResultsElement;
+        new (): HTMLHubPostsResultsElement;
+    };
     interface HTMLElementTagNameMap {
+        "hub-moderation-assistant": HTMLHubModerationAssistantElement;
+        "hub-moderation-filters": HTMLHubModerationFiltersElement;
+        "hub-post-card": HTMLHubPostCardElement;
+        "hub-posts-results": HTMLHubPostsResultsElement;
     }
 }
 declare namespace LocalJSX {
+    interface HubModerationAssistant {
+        /**
+          * Discussion channel
+         */
+        "channelId"?: string;
+        "entityId"?: string;
+    }
+    interface HubModerationFilters {
+        "onFiltersChanged"?: (event: HubModerationFiltersCustomEvent<any>) => void;
+    }
+    interface HubPostCard {
+        "post"?: any;
+    }
+    interface HubPostsResults {
+        "posts"?: any[];
+    }
     interface IntrinsicElements {
+        "hub-moderation-assistant": HubModerationAssistant;
+        "hub-moderation-filters": HubModerationFilters;
+        "hub-post-card": HubPostCard;
+        "hub-posts-results": HubPostsResults;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "hub-moderation-assistant": LocalJSX.HubModerationAssistant & JSXBase.HTMLAttributes<HTMLHubModerationAssistantElement>;
+            "hub-moderation-filters": LocalJSX.HubModerationFilters & JSXBase.HTMLAttributes<HTMLHubModerationFiltersElement>;
+            "hub-post-card": LocalJSX.HubPostCard & JSXBase.HTMLAttributes<HTMLHubPostCardElement>;
+            "hub-posts-results": LocalJSX.HubPostsResults & JSXBase.HTMLAttributes<HTMLHubPostsResultsElement>;
         }
     }
 }

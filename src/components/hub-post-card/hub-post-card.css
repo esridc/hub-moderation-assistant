@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+.title {
+  font-size: 1.25rem;
+}
+.body {
+  font-size: 1rem;
+}
+.toxicity-ok,
+.sentiment-positive,
+.authenticity-high {
+  --calcite-color-foreground-2: var(--calcite-color-status-success);
+  --calcite-color-text-1: var(--calcite-color-foreground-1);
+}
+
+.toxicity-unknown,
+.sentiment-unknown,
+.authenticity-unknown {
+  --calcite-color-foreground-2: var(--calcite-color-status-warning);
+}
+
+.toxicity-toxic,
+.sentiment-negative,
+.authenticity-low {
+  --calcite-color-foreground-2: var(--calcite-color-status-danger);
+  --calcite-color-text-1: var(--calcite-color-foreground-1);
+}

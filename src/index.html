@@ -4,15 +4,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-  <title>REPLACE_PROJECT_NAME</title>
+  <title>hub-moderation-assistant</title>
 
-  <script type="module" src="./build/REPLACE_PROJECT_NAME.esm.js"></script>
-  <script nomodule src="./build/REPLACE_PROJECT_NAME.js"></script>
+  <script type="module" src="./build/hub-moderation-assistant.esm.js"></script>
+  <script nomodule src="./build/hub-moderation-assistant.js"></script>
 
   <link
     rel="stylesheet"
     type="text/css"
-    href="https://js.arcgis.com/calcite-components/2.8.0/calcite.css"
+    href="/assets/calcite.css"
   />
 </head>
 
@@ -27,10 +27,11 @@
       padding: 0;
     }
   </style>
+  
 
   <script>
     // Dynamically add the component so we can set URL or object properties
-    const componentName = "REPLACE_PROJECT_NAME";
+    const componentName = "hub-moderation-assistant";
 
     const placeholderEl = document.getElementById("placeholder");
     const componentEl = document.createElement( componentName );
