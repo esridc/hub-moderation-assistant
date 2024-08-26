@@ -20,11 +20,11 @@ jobs:
       - name: install deps
         run: npm ci --legacy-peer-deps
 
-      - name: build components
-        run: npm run build
-
       - name: copy assets
         run: cp -r node_modules/@esri/calcite-components/dist/calcite/* ./src/assets/
+
+      - name: build components
+        run: npm run build
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
