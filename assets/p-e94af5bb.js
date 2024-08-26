@@ -1,0 +1,7 @@
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.11.1
+ */
+import{d as e}from"./p-dde88d02.js";import"./p-5dcb8a70.js";import"./p-c1f3c681.js";import"./p-180fb587.js";import"./p-8aebc84a.js";import"./p-09a4f06c.js";import"./p-79519f9a.js";import"./p-fbdfad6a.js";import"./p-d6cfcab9.js";import"./p-6ecb195b.js";import"./p-e38f29cd.js";import"./p-9658e553.js";import"./p-4cc0e90d.js";import"./p-f429933e.js";import"./p-0e6a32ae.js";import"./p-3c9a38fe.js";import"./p-0bb7e4c2.js";import"./p-bad38bf3.js";import"./p-f09f68ca.js";import"./p-6bdbf5f7.js";import"./p-fd0590d0.js";var a={name:"id",weekdays:"Minggu_Senin_Selasa_Rabu_Kamis_Jumat_Sabtu".split("_"),months:"Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember".split("_"),weekdaysShort:"Min_Sen_Sel_Rab_Kam_Jum_Sab".split("_"),monthsShort:"Jan_Feb_Mar_Apr_Mei_Jun_Jul_Agt_Sep_Okt_Nov_Des".split("_"),weekdaysMin:"Mg_Sn_Sl_Rb_Km_Jm_Sb".split("_"),weekStart:1,formats:{LT:"HH.mm",LTS:"HH.mm.ss",L:"DD/MM/YYYY",LL:"D MMMM YYYY",LLL:"D MMMM YYYY [pukul] HH.mm",LLLL:"dddd, D MMMM YYYY [pukul] HH.mm"},relativeTime:{future:"dalam %s",past:"%s yang lalu",s:"beberapa detik",m:"semenit",mm:"%d menit",h:"sejam",hh:"%d jam",d:"sehari",dd:"%d hari",M:"sebulan",MM:"%d bulan",y:"setahun",yy:"%d tahun"},ordinal:function e(a){return a+"."}};e.locale(a,null,true);export{a as default};
+//# sourceMappingURL=p-e94af5bb.js.map
