@@ -15,6 +15,9 @@ export class HubModerationFilters {
   
   @Event() filtersChanged: EventEmitter<any>;
 
+  componentDidLoad() {
+    this.onSelectChange(null);
+  }
   render() {
     return (
       <Host>
@@ -99,13 +102,13 @@ export class HubModerationFilters {
             ref={(el) => this.filterSelects[name] = el}
           >
             {analysisConfiguration.map((analysis) => {
-              return <calcite-option value={analysis.name.toLowerCase()}>{analysis.name}</calcite-option>
+              return <calcite-option selected={analysis.selected} value={analysis.name.toLowerCase()}>{analysis.name}</calcite-option>
             })}
           </calcite-select>
           </div>
       </calcite-block>
     </div>;
-  }      
+  }
   private renderFilterModeration() {
     return <div class="filter buffer">
       <calcite-block heading="Moderation status" open>
