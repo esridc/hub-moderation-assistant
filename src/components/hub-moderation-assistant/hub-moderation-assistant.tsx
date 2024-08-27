@@ -81,7 +81,7 @@ export class HubModerationAssistant {
             <calcite-button round>Create</calcite-button>
             <calcite-button round icon-start="bell" kind="neutral" appearance="transparent"></calcite-button>
           </div>
-          <calcite-navigation-user slot="user" full-name="Jack Dangermond" username="jdangermond"></calcite-navigation-user>
+          <calcite-navigation-user slot="user" full-name="Paige Makerson" username="pmakerson"></calcite-navigation-user>
           <calcite-navigation slot="navigation-secondary">
             <calcite-menu slot="content-start">
               <calcite-menu-item breadcrumb text-enabled text="Home" icon-start="home"></calcite-menu-item>

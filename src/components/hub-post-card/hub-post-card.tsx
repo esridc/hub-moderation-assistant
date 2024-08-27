@@ -26,7 +26,6 @@ export class HubPostCard {
   }
 
   render() {
-    console.log(this.post.properties.title, this.post.properties.sentiment, this.renderSentiment(this.post.properties.toxicity));
     return (
       <Host>
         <slot></slot>
@@ -49,8 +48,8 @@ export class HubPostCard {
                 <calcite-option value="hidden"selected={this.post.properties.status === 'hidden'}>Hidden</calcite-option>
               </calcite-select>
             </div>
-
         </calcite-card>
+        <em>...</em>
       </Host>
     );  
   }
