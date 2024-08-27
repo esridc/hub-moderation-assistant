@@ -50,7 +50,6 @@ export class HubPostCard {
               </calcite-select>
             </div>
         </calcite-card>
-        <em>...</em>
       </Host>
     );  
   }
