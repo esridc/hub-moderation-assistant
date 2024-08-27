@@ -39,7 +39,7 @@ export class HubModerationFilters {
     // let toxicityRange;
     // switch (this.toxicitySelect.value) {
     //   case 'approved':
-    //     toxicityRange = [0.5, 1];
+    //     toxicityRange = [0.5, 1] ;
     //     break;
     //   case 'pending':
     //     toxicityRange = [-0.5, 0.5];
