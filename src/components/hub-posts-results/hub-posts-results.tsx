@@ -14,6 +14,7 @@ export class HubPostsResults {
       <Host>
         <slot></slot>
         {this.renderPostsGrid(this.posts)}
+        {this.renderPostsTable(this.posts)}
       </Host>
     );
   }
