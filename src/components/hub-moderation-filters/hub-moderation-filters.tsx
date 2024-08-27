@@ -85,8 +85,6 @@ export class HubModerationFilters {
         {this.renderFilter('toxicity')}
         {this.renderFilter('sentiment')}
         {this.renderFilter('authenticity')}
-
-        <calcite-button class="panel-action" round appearance="">Show Filtered Posts</calcite-button>
       </div>
 
     )

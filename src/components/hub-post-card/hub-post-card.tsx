@@ -26,6 +26,7 @@ export class HubPostCard {
   }
 
   render() {
+    console.debug('Rendering Post:', this.post);
     return (
       <Host>
         <slot></slot>
