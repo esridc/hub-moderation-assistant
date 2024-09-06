@@ -1,6 +1,6 @@
 import { Component, Host, Listen, Prop, State, h } from '@stencil/core';
 import { setAssetPath } from '@esri/calcite-components/dist/components';
-import { fetchPosts, PostFilters } from '../../util/search';
+import { fetchPosts, fetchPostsSummary, PostFilters } from '../../util/search';
 
 setAssetPath('https://js.arcgis.com/calcite-components/2.11/assets');
 
@@ -17,8 +17,19 @@ export class HubModerationAssistant {
 
 
 
+  /**
+   * Posts fetched from API
+   */
   @State() posts: any[] = [];
 
+  /**
+   * 
+   */
+  @State() summary: any = "";
+
+  /**
+   * Organization name
+   */
   @State() org: any = {
     name: "CityX"
   }
@@ -44,7 +55,7 @@ export class HubModerationAssistant {
       ...filters
     }
     const context = {      
-      limit: 100,
+      // limit: 100,
       channelId: this.channelId,
 }
     try {
@@ -52,6 +63,10 @@ export class HubModerationAssistant {
       const data = await fetchPosts( params,  context);
       
       this.posts = data.features;
+
+      const summary = await fetchPostsSummary(params, context);
+      this.summary = summary.summary;
+
       // Process the fetched data
       // ...
       
@@ -118,6 +133,10 @@ export class HubModerationAssistant {
         {/* Body */}
         <calcite-panel slot="">
           <div class="page">
+            <hub-posts-summary summary={this.summary}></hub-posts-summary>
+          </div>            
+          <div class="page">
+
             <hub-posts-results posts={this.posts}></hub-posts-results>
           </div>
         </calcite-panel>

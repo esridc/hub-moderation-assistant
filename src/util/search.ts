@@ -14,20 +14,40 @@ export interface PostFilters {
     channelId?: string;
 }
 
+export interface HubPostSummary {
+    numberConsidered?: number;
+    numberErrored?: number;
+    numberMatched?: number;
+    numberSummarized?: number;
+    text?: string;
+}
+
 export async function fetchPosts(filters: PostFilters = {}, context: any = {}): Promise<any> {
     const baseUrl = `${HUB_API_BASE_URL}/search/v2/collections/discussion-post/items`;
     
+    const url = buildDiscussionAPIUrl(context, filters, baseUrl);
+
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        throw error;
+    }
+}
+
+function buildDiscussionAPIUrl(context: any, filters: PostFilters, baseUrl: string) {
     const contextQuery = Object.entries(context)
-    .filter(([_, value]) => value !== undefined)
-    .map(([key, value]) => {
-        if (Array.isArray(value)) {
-            const [min, max] = value;
-            return `filter=${key}%3E=${min}+and+${key}%3C=${max}`;
-        } else {
-            return `${key}=${value}`;
-        }
-    })
-    .join('&');
+        .filter(([_, value]) => value !== undefined)
+        .map(([key, value]) => {
+            if (Array.isArray(value)) {
+                const [min, max] = value;
+                return `filter=${key}%3E=${min}+and+${key}%3C=${max}`;
+            } else {
+                return `${key}=${value}`;
+            }
+        })
+        .join('&');
 
 
     const filterQuery = Object.entries(filters)
@@ -43,12 +63,18 @@ export async function fetchPosts(filters: PostFilters = {}, context: any = {}): 
         .join('+and+');
 
     const url = contextQuery ? `${baseUrl}?${contextQuery}&filter=${filterQuery}` : baseUrl;
+    return url;
+}
 
+export async function fetchPostsSummary(filters: PostFilters = {}, context: any = {}): Promise<any> {
+    const baseUrl = `${HUB_API_BASE_URL}/search/v2/collections/discussion-post/summarize`;
+
+    const url = buildDiscussionAPIUrl(context, filters, baseUrl);
     try {
         const response = await axios.get(url);
         return response.data;
     } catch (error) {
         console.error('Error fetching posts:', error);
         throw error;
-    }
+    }    
 }

@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { HubPostSummary } from "./util/search";
 export namespace Components {
     interface HubModerationAssistant {
         /**
@@ -20,6 +21,9 @@ export namespace Components {
     }
     interface HubPostsResults {
         "posts": any[];
+    }
+    interface HubPostsSummary {
+        "summary": HubPostSummary;
     }
 }
 export interface HubModerationFiltersCustomEvent<T> extends CustomEvent<T> {
@@ -51,11 +55,18 @@ declare global {
         prototype: HTMLHubPostsResultsElement;
         new (): HTMLHubPostsResultsElement;
     };
+    interface HTMLHubPostsSummaryElement extends Components.HubPostsSummary, HTMLStencilElement {
+    }
+    var HTMLHubPostsSummaryElement: {
+        prototype: HTMLHubPostsSummaryElement;
+        new (): HTMLHubPostsSummaryElement;
+    };
     interface HTMLElementTagNameMap {
         "hub-moderation-assistant": HTMLHubModerationAssistantElement;
         "hub-moderation-filters": HTMLHubModerationFiltersElement;
         "hub-post-card": HTMLHubPostCardElement;
         "hub-posts-results": HTMLHubPostsResultsElement;
+        "hub-posts-summary": HTMLHubPostsSummaryElement;
     }
 }
 declare namespace LocalJSX {
@@ -75,11 +86,15 @@ declare namespace LocalJSX {
     interface HubPostsResults {
         "posts"?: any[];
     }
+    interface HubPostsSummary {
+        "summary"?: HubPostSummary;
+    }
     interface IntrinsicElements {
         "hub-moderation-assistant": HubModerationAssistant;
         "hub-moderation-filters": HubModerationFilters;
         "hub-post-card": HubPostCard;
         "hub-posts-results": HubPostsResults;
+        "hub-posts-summary": HubPostsSummary;
     }
 }
 export { LocalJSX as JSX };
@@ -90,6 +105,7 @@ declare module "@stencil/core" {
             "hub-moderation-filters": LocalJSX.HubModerationFilters & JSXBase.HTMLAttributes<HTMLHubModerationFiltersElement>;
             "hub-post-card": LocalJSX.HubPostCard & JSXBase.HTMLAttributes<HTMLHubPostCardElement>;
             "hub-posts-results": LocalJSX.HubPostsResults & JSXBase.HTMLAttributes<HTMLHubPostsResultsElement>;
+            "hub-posts-summary": LocalJSX.HubPostsSummary & JSXBase.HTMLAttributes<HTMLHubPostsSummaryElement>;
         }
     }
 }
