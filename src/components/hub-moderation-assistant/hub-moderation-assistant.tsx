@@ -136,6 +136,9 @@ export class HubModerationAssistant {
             <hub-posts-summary summary={this.summary}></hub-posts-summary>
           </div>            
           <div class="page">
+            {this.posts.length} posts
+          </div>            
+          <div class="page">
 
             <hub-posts-results posts={this.posts}></hub-posts-results>
           </div>

@@ -46,7 +46,7 @@ export class HubPostsResults {
           <calcite-table-cell id={`post-${post.id}-toxicity`}>{post.properties.toxicity}
               <calcite-action slot="header-actions-end" icon="question" text="Explain" id={`post-${post.id}-toxicity-explained`}></calcite-action>
               <calcite-tooltip reference-element={`post-${post.id}-toxicity-explained`} label="Catalog help">
-              <span>Open web help to learn more about blah blah...</span>
+              <span>Open web help to learn more...</span>
             </calcite-tooltip>
 
           </calcite-table-cell>

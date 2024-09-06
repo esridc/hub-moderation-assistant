@@ -1,5 +1,5 @@
 import { Component, Host, Prop, h } from '@stencil/core';
-import { authenticityAnalysis, getAnalysisValue, sentimentAnalysis, toxicityAnalysis } from '../../util/analysis';
+import { authenticityAnalysis, getAnalysisConfiguration, getAnalysisValue, sentimentAnalysis, toxicityAnalysis } from '../../util/analysis';
 
 @Component({
   tag: 'hub-post-card',
@@ -10,19 +10,17 @@ export class HubPostCard {
 
   @Prop() post: any;
 
-  renderAuthenticity(authenticity: number) {
-    const analysis = getAnalysisValue(authenticity, authenticityAnalysis);
-    return <calcite-chip class={`authenticity-${analysis.name.toLowerCase().replace(' ', '-')}`} value="calcite chip" icon={analysis.icon}>{analysis.name}</calcite-chip>;
-  }
-
-  renderSentiment(sentiment: number) {
-    const analysis = getAnalysisValue(sentiment, sentimentAnalysis);
-    return <calcite-chip class={`sentiment-${analysis.name.toLowerCase().replace(' ', '-')}`} value="calcite chip" icon={analysis.icon}>{analysis.name}</calcite-chip>;
-  }
-
-  renderToxiticity(toxicity: number) {
-    const analysis = getAnalysisValue(toxicity, toxicityAnalysis);
-    return <calcite-chip class={`toxicity-${analysis.name.toLowerCase().replace(' ', '-')}`} value="calcite chip" icon={analysis.icon}>{analysis.name}</calcite-chip>;
+  renderDimension(dimension: string, value: number) {
+    const analysisConfiguration = getAnalysisConfiguration(dimension);
+    const analysis = getAnalysisValue(value, analysisConfiguration);
+    const chip = <calcite-chip class={`${dimension}-${analysis.name.toLowerCase().replace(' ', '-')}`} value="calcite chip" icon={analysis.icon}>{analysis.name}</calcite-chip>;
+    const graph = this.renderRange(value, [-1, 1]);
+    return (
+      <div class="dimension">
+        {chip}
+        {graph}
+      </div>
+    );
   }
 
   render() {
@@ -37,9 +35,9 @@ export class HubPostCard {
 
             </span>
             <div slot="footer-start">
-              {this.renderToxiticity(this.post.properties.toxicity)}
-              {this.renderSentiment(this.post.properties.sentiment)}
-              {this.renderAuthenticity(this.post.properties.authenticity)}<br/>
+              {this.renderDimension('toxicity', this.post.properties.toxicity)}
+              {this.renderDimension('sentiment', this.post.properties.sentiment)}
+              {this.renderDimension('authenticity', this.post.properties.authenticity)}<br/>
               </div>
             
             <div slot="footer-end">
@@ -72,15 +70,30 @@ export class HubPostCard {
       </div>
     )
   }
+  private renderRange(value: number, range: [number, number]) {
+    const percentage = (value - range[0]) / (range[1] - range[0]) * 100;
+    const barStyle = {
+      width: `${percentage}%`
+    };
+
+    return (
+      <div class="graph">
+        <div class="bar" style={barStyle}></div>
+      </div>
+    );
+  }
   private renderRationales() {
     return <calcite-accordion>
-      <calcite-accordion-item description={this.post.properties.toxicity} expanded heading="Toxicity Rationale" icon-start="">
-        {this.post.properties.toxicityRationale}<br />
+      <calcite-accordion-item  expanded heading="Toxicity Rationale" icon-start="">
+      {this.renderRange(this.post.properties.toxicity, [-1, 1])}
+      {this.post.properties.toxicityRationale}<br />
       </calcite-accordion-item>
-      <calcite-accordion-item description={this.post.properties.sentiment} expanded heading="Sentiment Rationale" icon-start="">
+      <calcite-accordion-item expanded heading="Sentiment Rationale" icon-start="">
+      {this.renderRange(this.post.properties.sentiment, [-1, 1])}
         {this.post.properties.sentimentRationale}<br />
       </calcite-accordion-item>
-      <calcite-accordion-item description={this.post.properties.authenticity} expanded heading="Authenticity Rationale" icon-start="">
+      <calcite-accordion-item expanded heading="Authenticity Rationale" icon-start="">
+      {this.renderRange(this.post.properties.authenticity, [-1, 1])}
         {this.post.properties.authenticityRationale}<br />
       </calcite-accordion-item>
     </calcite-accordion>;
